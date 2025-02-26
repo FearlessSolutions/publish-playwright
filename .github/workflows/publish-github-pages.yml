@@ -6,6 +6,7 @@ on:
     workflows:
       - Playwright Tests
       - Delete Playwright Report for Branch
+      - Code Coverage Report
     types:
       - completed
   # allow manually triggering workflow

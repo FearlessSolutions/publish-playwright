@@ -1,3 +1,4 @@
+# Adapted from https://dev.to/ysfaran/how-to-use-playwright-with-github-actions-and-github-pages-4gdl
 name: Push to GitHub Pages
 
 on:
