@@ -20,7 +20,7 @@
 
 title: Report Dashboard
 email: tforkner@fearless.com
-description: >- 
+description: >- # this means to ignore newlines until "baseurl:"
   Example repo to demonstrate how to create a reporting dashboard for tests
 baseurl: "/publish-playwright" # the subpath of your site, e.g. /blog
 url: "https://fearlesssolutions.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -50,3 +50,16 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      path: "index.markdown"
+    values:
+      custom_css: [site]
