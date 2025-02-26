@@ -31,10 +31,11 @@
   font-weight: normal;
 }
 
-.coverage-links {
+.coverage-link {
   margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  min-height: 1rem;
 }
 
 .coverage-pass {

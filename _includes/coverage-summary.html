@@ -26,13 +26,9 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div class="coverage-links">
+  <div class="coverage-link">
     <!-- Liquid provides a helper method that will create the link relative to the baseurl set in _config.yml -->
     <a href="{{ '/coverage' | relative_url }}" target="_blank">View Full Report</a>
-    <a
-      rel="noopener"
-      href="https://codeclimate.com/github/Enterprise-CMCS/macpro-mako"
-      target="_blank">Code Climate</a>
   </div>
 {% else %}
   <!-- if the total was not included, display a message that there is nothing to display -->
