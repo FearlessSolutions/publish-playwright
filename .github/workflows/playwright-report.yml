@@ -2,9 +2,8 @@ name: Playwright Tests
 
 on:
   push:
-    branches:
+    branches: # specify branches you want to trigger on or ignore
       - "!gh-pages"
-		  # specify branches you want to trigger on or ignore
 
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
