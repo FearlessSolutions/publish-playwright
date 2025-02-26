@@ -62,4 +62,22 @@ defaults:
     scope:
       path: "index.markdown"
     values:
-      custom_css: [site]
+      custom_css: [site,playwright,coverage] # added the playwright css in previous steps
+  -
+    scope:
+      path: "coverage.markdown"
+    values:
+      custom_css: [site,coverage]
+  -
+    scope:
+      path: "playwright-*.markdown"
+      type: "pages"
+    values:
+      custom_css: [site,playwright]
+  -
+    scope:
+      path: "playwright-reports/branches/*"
+      type: "pages"
+    values:
+      layout: "playwright-branch"
+      custom_css: [site,playwright]
