@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",

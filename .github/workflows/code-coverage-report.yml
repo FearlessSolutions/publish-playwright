@@ -1,9 +1,9 @@
 name: Code Coverage Report
 
 on:
-  push:
-    branches:
-      - main # run this whenever someone merged into main
+  # push:
+  #   branches:
+  #     - main # run this whenever someone merged into main
   schedule:
     - cron: "30 01 * * *" # run this every morning at 1:30
   workflow_dispatch: # allow manual triggering workflow
