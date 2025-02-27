@@ -34,17 +34,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 #### use this section if you are adding branch protections to your gh-pages branch ####
-      - uses: actions/create-github-app-token@v1
-        id: app-token
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.PRIVATE_KEY }}
-      - name: Get GitHub App User ID
-        id: get-user-id
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          node-version: '20'
+      - name: GitHub App Access Token
+        id: app-token
         run: |
-          echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+          echo "${{ secrets.PRIVATE_KEY }}" > /tmp/github-app-private-key.pem
+          TOKEN="$(npx obtain-github-app-installation-access-token \
+            -a ${{ vars.APP_ID }} \
+            -i ${{ vars.INSTALLATION_ID }} \
+            -k /tmp/github-app-private-key.pem)"
+          echo "::add-mask::$TOKEN"
+          echo "::set-output name=token::$TOKEN"
+          rm /tmp/github-app-private-key.pem
 #### end of branch protection settings ####
       - name: Checkout GitHub Pages Branch
         uses: actions/checkout@v4
