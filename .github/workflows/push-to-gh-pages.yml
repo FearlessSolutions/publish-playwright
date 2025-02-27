@@ -34,21 +34,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 #### use this section if you are adding branch protections to your gh-pages branch ####
-      - name: Get GitHub token
-        id: github_token
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+      - name: Get GitHub App User ID
+        id: get-user-id
         env:
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        run: echo GITHUB_TOKEN=$(gha-token --app-id ${{ vars.APP_ID }} --installation-id ${{ vars.INSTALLATION_ID }} --private-key "$PRIVATE_KEY") >> $GITHUB_OUTPUT
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
 #### end of branch protection settings ####
       - name: Checkout GitHub Pages Branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
-#### use this section if you are adding branch protections to your gh-pages branch ####
-          token: ${{ steps.github_token.outputs.GITHUB_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
           # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
           persist-credentials: false
-#### end of branch protection settings ####
       - name: Download File 1
         uses: actions/download-artifact@v4
         with:
