@@ -33,6 +33,11 @@ jobs:
   push-to-pages:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
       - name: Checkout GitHub Pages Branch
         uses: actions/checkout@v4
         with:
@@ -48,9 +53,6 @@ jobs:
         with:
           name: ${{ inputs.FILE_2_ARTIFACT_ID }}
           path: ${{ inputs.FILE_2_DEPLOY_TO }}
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Push to GitHub Pages Branch
         run: |
           git config user.name "github-actions[bot]"
