@@ -47,14 +47,14 @@ jobs:
             -i ${{ vars.INSTALLATION_ID }} \
             -k /tmp/github-app-private-key.pem)"
           echo "::add-mask::$TOKEN"
-          echo "token=$TOKEN" >>
+          echo "APP_TOKEN=$TOKEN" >> $GITHUB_ENV
           rm /tmp/github-app-private-key.pem
 #### end of branch protection settings ####
       - name: Checkout GitHub Pages Branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ env.APP_TOKEN }}
           # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
           persist-credentials: false
       - name: Download File 1
@@ -72,7 +72,7 @@ jobs:
         run: |
           git config --global user.name 'publish-playwright app'
           git config --global user.email 'publish-playwright-app@users.noreply.github.com'
-          git config --global url.https://${{ steps.app-token.outputs.token }}@github.com/.insteadOf https://github.com/
+          git config --global url.https://${{ env.APP_TOKEN }}@github.com/.insteadOf https://github.com/
           git add -A
           git commit -am "${{ inputs.COMMIT_MSG }}"
           git pull origin gh-pages --rebase -s recursive -X ours
