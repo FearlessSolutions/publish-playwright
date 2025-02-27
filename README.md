@@ -4,6 +4,8 @@ Demonstration repository for publishing Playwright and code coverage reports to 
 
 The repository contains two branches, `main` and `gh-pages`, that contain code for creating the self generating reports.
 
+See [our GitHub Pages site](https://fearlesssolutions.github.io/publish-playwright/) for an example of what the reporting dashboard will look like.
+
 See [our wiki](https://github.com/FearlessSolutions/publish-playwright/wiki) for detailed information on how to set up publishing reports in your repository.
 
 ## main Branch
