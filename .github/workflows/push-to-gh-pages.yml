@@ -44,6 +44,9 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+      - run: |
+          git config --global user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
+          git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
 #### end of branch protection settings ####
       - name: Checkout GitHub Pages Branch
         uses: actions/checkout@v4
@@ -64,12 +67,7 @@ jobs:
           name: ${{ inputs.FILE_2_ARTIFACT_ID }}
           path: ${{ inputs.FILE_2_DEPLOY_TO }}
       - name: Push to GitHub Pages Branch
-        env:
-          NAME: "${{ steps.app-token.outputs.app-slug }}[bot]" # use "github-actions[bot]" if you are not using branch protections
-          EMAIL: "${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com" # use "41898282+github-actions[bot]@users.noreply.github.com" if you are not using branch protections
         run: |
-          git config --global user.name "${{ env.NAME }}"
-          git config --global user.email "${{ env.EMAIL }}"
           git add -A
           git commit -am "${{ inputs.COMMIT_MSG }}"
           git pull origin gh-pages --rebase -s recursive -X ours
