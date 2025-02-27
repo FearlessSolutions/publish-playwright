@@ -11,7 +11,6 @@ The repository contains two branches, `main` and `gh-pages`, that contain code f
 The `main` branch contains the `.github/workflows/` directory with workflows needed to push reports to `gh-pages`.
 
 - `push-to-gh-pages.yml` is a reusable workflow that will push 2 files to specified locations in `gh-pages`
-- `publish-github-pages.yml` is triggered by workflows that have pushed to `gh-pages` and rebuilds and redeploys the site
 - `playwright-report.yml` runs the Playwright tests and calls `push-to-gh-pages.yml` to push the report files
 - `playwright-report-cleanup.yml` is triggered by a branch being deleted and removes those branch files from `gh-pages`
 - `code-coverage-report.yml` runs the unit tests and calls `push-to-gh-pages.yml` to push the report files (OPTIONAL)
@@ -27,6 +26,10 @@ The `main` branch also contains the example configurations for Playwright and vi
 ## gh-pages Branch
 
 The `gh-pages` branch contains the Jekyll configuration needed to build the demonstration site.
+
+There is one workflow on this branch.
+
+- `publish-github-pages.yml` is triggered by pushing to `gh-pages` and rebuilds and redeploys the site
 
 ### Example Reports
 
