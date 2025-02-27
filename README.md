@@ -4,6 +4,8 @@ Demonstration repository for publishing Playwright and code coverage reports to 
 
 The repository contains two branches, `main` and `gh-pages`, that contain code for creating the self generating reports.
 
+See [our wiki](https://github.com/FearlessSolutions/publish-playwright/wiki) for detailed information on how to set up publishing reports in your repository.
+
 ## main Branch
 
 ### GitHub Actions
@@ -25,15 +27,13 @@ The `main` branch also contains the example configurations for Playwright and vi
 
 ## gh-pages Branch
 
-The `gh-pages` branch contains the Jekyll configuration needed to build the demonstration site.
-
-There is one workflow on this branch.
+The `gh-pages` branch contains the Jekyll configuration needed to build the demonstration site. It also contains one workflow in `.github/workflows/`.
 
 - `publish-github-pages.yml` is triggered by pushing to `gh-pages` and rebuilds and redeploys the site
 
 ### Example Reports
 
-The `gh-pages` branch is a working example so it contains report files that will not be needed in your site. You do not need to bring over any of these files, or you can bring them over until you are bringing in your own reports.
+The `gh-pages` branch is a working example so it contains report files that will not be needed in your site. You do not need to bring over any of these files, or you can bring them over until you have completed the set up and can use your own reports.
 
 - `_data/coverage/coverage-summary.json`
 - `_data/playwright-reports/main.json`
