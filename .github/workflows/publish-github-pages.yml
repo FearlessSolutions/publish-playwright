@@ -14,7 +14,7 @@ on:
 
 # ensures that currently running GitHub Pages Build and Deploy workflow are canceled if another one starts
 concurrency:
-  group: gh-pages
+  group: publish-github-pages
   cancel-in-progress: true
 
 jobs:
