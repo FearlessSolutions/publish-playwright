@@ -26,6 +26,8 @@ baseurl: "/publish-playwright" # the subpath of your site, e.g. /blog
 url: "https://fearlesssolutions.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  thetif
 
+github_url: "https://github.com/FearlessSolutions/publish-playwright"
+
 # Build settings
 theme: minima
 plugins:
