@@ -1,9 +1,14 @@
-name: PR - coverage annotation
+name: PR Coverage Annotation
 
 on:
   pull_request:
     branches:
       - main
+
+# ensures that currently running PR Coverage Annotation workflow is canceled if another one starts
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 permissions:
   actions: read
@@ -17,7 +22,7 @@ jobs:
       actualResult: ${{ steps.test.conclusion }}
     steps:
       - uses: actions/checkout@v4
-# this is our set up for installing and running the tests, update this with your set up and test run
+#### this is our set up for installing and running the tests, update this with your set up and test run ####
       - uses: pnpm/action-setup@v4
       - name: Install dependencies
         run: pnpm install
@@ -25,7 +30,7 @@ jobs:
         id: test
         continue-on-error: true
         run: pnpm exec vitest --coverage
-# end set up
+#### end set up and test run ####
       - name: Get run ID of Code Coverage Report workflow
         # gets the run id of the last time Code Coverage Report ran so that it can be used to download that artifact
         id: get-run-id
@@ -43,7 +48,7 @@ jobs:
         id: get-main-coverage
         continue-on-error: true
         with:
-          name: main-coverage
+          name: json-main-coverage-report
           path: main-coverage
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ steps.get-run-id.outputs.run-id }}

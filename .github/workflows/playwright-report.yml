@@ -6,6 +6,11 @@ on:
       - "*"
       - "!gh-pages"
 
+# ensures that currently running Playwright workflows are canceled if branch is deleted
+concurrency:
+  group: Playwright-${{ github.event.ref }}
+  cancel-in-progress: true
+
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
   contents: write
@@ -15,7 +20,6 @@ jobs:
   # add any set up jobs needed to get e2e tests running in GitHub Actions
   e2e:
     runs-on: ubuntu-latest
-    # needs: [deploy] use needs if any of the previous jobs have to complete before the tests can run
     env:
       JSON_ARTIFACT_ID: json-playwright-report
       HTML_ARTIFACT_ID: html-playwright-report
@@ -31,7 +35,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # this is our set up for installing and running the tests, update this with your set up and test run
+#### this is our set up for installing and running the tests, update this with your set up and test run ####
       - uses: pnpm/action-setup@v4
       - name: Install dependencies
         run: pnpm install
@@ -41,7 +45,7 @@ jobs:
         id: e2e-test
         continue-on-error: true
         run: pnpm exec playwright test
-      # end set up
+#### end set up and test run ####
       - name: Set Report Path and Name
         id: variables
         # create variables for renaming the reports and for where they need to be deployed to
@@ -59,7 +63,7 @@ jobs:
             echo "commit_msg=add Playwright report for branch ${{ github.ref_name }}, run-id ${{ github.run_id }}" >> "$GITHUB_OUTPUT"
           fi
       - name: Rename Reports
-        # working-directory should point to the location of your playwright reports
+        # working-directory should point to the location of your Playwright reports
         working-directory: playwright-reports/
         # rename the reports to the report_name from above
         # change the names and locations to match your Playwright configurations
@@ -73,7 +77,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: ${{ env.JSON_ARTIFACT_ID }}
-          # path should point to the location of your json playwright report
+          # path should point to the location of your json Playwright report
           path: playwright-reports/${{ steps.variables.outputs.report_name }}.json
           retention-days: 30
       - name: Upload HTML Report
@@ -82,7 +86,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: ${{ env.HTML_ARTIFACT_ID }}
-          # path should point to the location of your html playwirhgt reprot
+          # path should point to the location of your html Playwright report
           path: playwright-reports/html-report/${{ steps.variables.outputs.report_name }}.html
           retention-days: 30
 
@@ -97,3 +101,4 @@ jobs:
       FILE_2_DEPLOY_TO: ${{ needs.e2e.outputs.html_deploy_to }}
       COMMIT_MSG: ${{ needs.e2e.outputs.commit_msg }}
       URL_PATH: ${{ needs.e2e.outputs.output_url }}
+    secrets: inherit # allow called workflow to use GitHub secrets

@@ -8,6 +8,11 @@ on:
     - cron: "30 01 * * *" # run this every morning at 1:30
   workflow_dispatch: # allow manual triggering workflow
 
+# ensures that currently running Code Coverage Report workflow is canceled if another job starts
+concurrency:
+  group: ${{ github.workflow }}-main
+  cancel-in-progress: true
+
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
   actions: read
@@ -17,7 +22,7 @@ jobs:
   coverage-report:
     runs-on: ubuntu-latest
     env:
-      JSON_ARTIFACT_ID: main-coverage
+      JSON_ARTIFACT_ID: json-main-coverage-report
       HTML_ARTIFACT_ID: html-main-coverage-report
     outputs:
       json_artifact_id: ${{ env.JSON_ARTIFACT_ID }}
@@ -27,14 +32,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-# this is our set up for installing and running the tests, update this with your set up and test run
+#### this is our set up for installing and running the tests, update this with your set up and test run ####
       - uses: pnpm/action-setup@v4
       - name: Install dependencies
         run: pnpm install
       - name: Run Tests
         continue-on-error: true
         run: pnpm exec vitest --coverage
-# end set up
+#### end set up and test run ####
       - name: Upload Coverage Summary
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
@@ -67,3 +72,4 @@ jobs:
       FILE_2_DEPLOY_TO: coverage/
       COMMIT_MSG: update code coverage report for main
       URL_PATH: coverage/
+    secrets: inherit # allow called workflow to use GitHub secrets
