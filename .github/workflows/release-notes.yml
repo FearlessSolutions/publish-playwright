@@ -17,7 +17,7 @@ jobs:
       - name: Create Filename
         run: |
           pub_date=$(${{ github.event.release.published_at }}| cut -d "T" -f 1)
-          tag_name=$(echo "${{ github.event.release.tag_name }}" | sed "s/\./-g")
+          tag_name=$(echo "${{ github.event.release.tag_name }}" | sed "s/\./-/g")
           echo "post_filename=$pub_date-$tag_name.md" >> "$GITHUB_ENV"
           touch $post_filename
       - name: Create Post
