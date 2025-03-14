@@ -7,5 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "${{ github.event.refs }}"
-          echo "${{ github.event.tags }}"
+          echo "Refs ${{ github.event.ref }}"
+          echo "Tags ${{ github.event.tag }}"
+          echo "Tag Name ${{ github.event.release.tag_name }}"
+          echo "Release Notes ${{ github.event.release.body }}"
