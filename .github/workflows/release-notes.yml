@@ -14,14 +14,14 @@ jobs:
     name: Generate Release Post
     runs-on: ubuntu-latest
     outputs:
-      artifact_id: ${{ steps.filename.outputs.post_filename }}
+      artifact_id: ${{ steps.filename.outputs.post_filename }}.md
     steps:
       - name: Create Filename
         id: filename
         run: |
           pub_date=$(echo ${{ github.event.release.published_at }}| cut -d "T" -f 1)
           tag_name=$(echo "${{ github.event.release.tag_name }}" | sed "s/\./-/g")
-          filename="$pub_date-$tag_name.md"
+          filename="$pub_date-$tag_name"
           echo "post_filename=$filename" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
@@ -31,17 +31,17 @@ jobs:
           title: ${{ github.event.release.tag_name }}
           tag: ${{ github.event.release.tag_name }}
           category: release
+          url: releases/${{ steps.filename.outputs.post_filename }}
           created_at: ${{ github.event.release.created_at }}
           published_at: ${{ github.event.release.published_at }}
           author_name: ${{ github.event.release.author.login }}
           html_url: ${{ github.event.release.html_url }}
-          url: ${{ github.event.release.url }}
           prerelease: ${{ github.event.release.prerelease }}
           note: ${{ github.event.release.body }}
           ---
 
           ${{ github.event.release.body }}
-          """ > ${{ steps.filename.outputs.post_filename }}
+          """ > ${{ steps.filename.outputs.post_filename }}.md
       - name: Upload Release Notes
         uses: actions/upload-artifact@v4
         with:
