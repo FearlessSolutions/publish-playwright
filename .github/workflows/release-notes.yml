@@ -1,12 +1,43 @@
+name: Publish Release Notes
+
 on:
   release:
-    types: [published, unpublished, created, edited, prereleased, released]
+    types: [published]
+
+# this action needs the same permissions as the Push to GitHub Pages action because it is calling it
+permissions:
+  contents: write
+  actions: read
 
 jobs:
-  notes:
+  generate-post:
+    name: Generate Release Post
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Type ${{ github.event.action }}"
-          echo "Tag Name ${{ github.event.release.tag_name }}"
-          echo "Release Notes ${{ github.event.release.body }}"
+      - name: Create Filename
+        run: |
+          pub_date=$(${{ github.event.release.published_at }}| cut -d "T" -f 1)
+          tag_name=$(echo "${{ github.event.release.tag_name }}" | sed "s/\./-g")
+          echo "post_filename=$pub_date-$tag_name.md" >> "$GITHUB_ENV"
+          touch $post_filename
+      - name: Create Post
+        run: |
+          echo """
+          ---
+          title: ${{ github.event.release.tag_name }}
+          name: ${{ github.event.release.name }}
+          created_at: ${{ github.event.release.created_at }}
+          published_at: ${{ github.event.release.published_at }}
+          tag_name: ${{ github.event.release.tag_name }}
+          author_name: ${{ github.event.release.author.login }}
+          author_email: ${{ github.event.release.author.email }}
+          draft: ${{ github.event.release.draft }}
+          prerelease: ${{ github.event.release.prerelease }}
+          html_url: ${{ github.event.release.html_url }}
+          upload_url: ${{ github.event.release.upload_url }}
+          url: ${{ github.event.release.url }}
+          ---
+
+          ${{ github.event.release.body }}
+          """ > $post_filename
+      - run: cat $post_filename
