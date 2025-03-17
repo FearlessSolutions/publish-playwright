@@ -31,19 +31,15 @@ jobs:
           title: ${{ github.event.release.tag_name }}
           tag: ${{ github.event.release.tag_name }}
           category: release
-          url: releases/${{ steps.filename.outputs.post_name }}
           created_at: ${{ github.event.release.created_at }}
           published_at: ${{ github.event.release.published_at }}
           author_name: ${{ github.event.release.author.login }}
           html_url: ${{ github.event.release.html_url }}
           prerelease: ${{ github.event.release.prerelease }}
-          note: ${{ github.event.release.body }}
           ---
 
           ${{ github.event.release.body }}
           """ > ${{ steps.filename.outputs.filename }}
-          # remove the last line because it includes a link
-          sed '$d' ${{ steps.filename.outputs.filename }}
       - name: Upload Release Notes
         uses: actions/upload-artifact@v4
         with:
