@@ -26,27 +26,18 @@ jobs:
           echo "filename=$name.md" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
+          echo ${{ github.event }} | jq '.'
           echo """---
-          layout: post
-          title: ${{ github.event.release.tag_name }}
           tag: ${{ github.event.release.tag_name }}
           category: release
           created_at: ${{ github.event.release.created_at }}
           published_at: ${{ github.event.release.published_at }}
-          author_name: ${{ github.event.release.author.login }}
+          author: ${{ github.event.release.author.login }}
+          author_avatar: ${{ github.event.release.author.avatar_url }}
+          author_link: ${{ github.event.release.author.html_url }}
           html_url: ${{ github.event.release.html_url }}
           prerelease: ${{ github.event.release.prerelease }}
           ---
-          
-          id: ${{ github.event.release.id }}
-          name: ${{ github.event.release.name }}
-          node_id: ${{ github.event.release.node_id }}
-          tag_name: ${{ github.event.release.tag_name }}
-          tarball_url: ${{ github.event.release.tarball_url }}
-          target_commitish: ${{ github.event.release.target_commitish }}
-          upload_url: ${{ github.event.release.upload_url }}
-          url: ${{ github.event.release.url }}
-          zipball_url: ${{ github.event.release.zipball_url }}
 
           ${{ github.event.release.body }}
           """ > ${{ steps.filename.outputs.filename }}
