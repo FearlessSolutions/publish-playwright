@@ -37,6 +37,7 @@ jobs:
           html_url: ${{ github.event.release.html_url }}
           prerelease: ${{ github.event.release.prerelease }}
           ---
+          ${{ github.event.release }}
 
           ${{ github.event.release.body }}
           """ > ${{ steps.filename.outputs.filename }}
