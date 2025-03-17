@@ -1,0 +1,66 @@
+.release-entry {
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.release-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 3rem;
+}
+
+.release-meta {
+  border-bottom: 1px solid #d0d7de;
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  color: rgb(89, 99, 110);
+  line-height: 1.5rem;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.release-meta .meta-item {
+  margin-bottom: 0.5rem;
+  margin-right: 1.5rem;
+}
+
+.release-author .avatar {
+  border-radius: 3px;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.release-author .name {
+  color: inherit;
+  font-weight: bold;
+}
+
+.release-link {
+  display: inline-block;
+}
+
+.release-link .meta-link {
+  color: inherit;
+  cursor: pointer;
+}
+
+.link-detail {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.link-detail svg {
+  fill: rgb(89, 99, 110);
+  vertical-align: text-bottom;
+}
+
+.link-detail .link-text {
+  margin-left: 4px;
+}

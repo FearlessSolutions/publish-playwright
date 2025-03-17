@@ -89,3 +89,10 @@ defaults:
     values:
       layout: "playwright-branch"
       custom_css: [site,playwright]
+  -
+    scope:
+      path: "_posts/releases/*"
+      type: "posts"
+    values:
+      layout: "release-note"
+      custom_css: [site, github]

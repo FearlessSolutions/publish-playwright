@@ -1,0 +1,57 @@
+---
+layout: default
+---
+<article class="post h-entry release-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header release-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.tag | escape }}</h1>
+    <div class="post-meta release-meta">
+      <div class="release-author meta-item">
+        {% if page.author_avatar %}
+          <img src="{{ page.author_avatar }}" alt="@{{ page.author }}" size="20" height="20" width="20" class="avatar" />
+        {% endif %}
+        {% if page.author_link %}
+          <a class="name" href="{{ page.author_link }}">{{ page.author }}</a>
+        {% else %}
+          <span class="name">{{ page.author }}</span>
+        {% endif %}
+        released this
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {% assign pdate = page.published_at | date_to_xmlschema %}
+        <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
+          {{ pdate | date: date_format }}
+        </time>
+      </div>
+      <div class="release-link meta-item">
+        <a href="{{ page.snapshot_url }}" class="meta-link">
+          <span class="link-detail">
+            <svg class="octicon octicon-code" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" role="img" aria-hidden="true">
+              <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
+            </svg>
+            <span class="link-text">{{ page.tag }}</span>
+          </span>
+        </a>
+      </div>
+      <div class="release-link meta-item">
+        <a href="{{ page.pr_url }}" class="meta-link">
+          <span class="link-detail">
+            <svg aria-label="Commit" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-commit">
+              <path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path>
+            </svg>
+            <span class="link-text">{{ page.commit-id }}</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>
