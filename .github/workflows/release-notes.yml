@@ -26,8 +26,7 @@ jobs:
           echo "filename=$name.md" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
-          echo """
-          ---
+          echo """---
           layout: post
           title: ${{ github.event.release.tag_name }}
           tag: ${{ github.event.release.tag_name }}
@@ -43,6 +42,8 @@ jobs:
 
           ${{ github.event.release.body }}
           """ > ${{ steps.filename.outputs.filename }}
+          # remove the last line because it includes a link
+          sed '$d' ${{ steps.filename.outputs.filename }}
       - name: Upload Release Notes
         uses: actions/upload-artifact@v4
         with:
