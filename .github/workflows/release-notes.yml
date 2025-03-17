@@ -26,7 +26,6 @@ jobs:
           echo "filename=$name.md" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
-          echo ${{ github.event }} | jq '.'
           echo """---
           tag: ${{ github.event.release.tag_name }}
           category: release
