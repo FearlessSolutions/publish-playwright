@@ -37,7 +37,16 @@ jobs:
           html_url: ${{ github.event.release.html_url }}
           prerelease: ${{ github.event.release.prerelease }}
           ---
-          ${{ github.event.release }}
+          
+          id: ${{ github.event.release.id }}
+          name: ${{ github.event.release.name }}
+          node_id: ${{ github.event.release.node_id }}
+          tag_name: ${{ github.event.release.tag_name }}
+          tarball_url: ${{ github.event.release.tarball_url }}
+          target_commitish: ${{ github.event.release.target_commitish }}
+          upload_url: ${{ github.event.release.upload_url }}
+          url: ${{ github.event.release.url }}
+          zipball_url: ${{ github.event.release.zipball_url }}
 
           ${{ github.event.release.body }}
           """ > ${{ steps.filename.outputs.filename }}
