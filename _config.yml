@@ -58,6 +58,7 @@ plugins:
 header_pages:
   - coverage.markdown
   - playwright-reports.markdown
+  - releases.markdown
 
 defaults:
   -
@@ -89,6 +90,10 @@ defaults:
     values:
       layout: "playwright-branch"
       custom_css: [site,playwright]
+  - scope:
+      path: "releases.markdown"
+    values:
+      custom_css: [site, github]
   -
     scope:
       path: "_posts/releases/*"

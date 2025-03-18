@@ -2,12 +2,14 @@
   border: 1px solid #d0d7de;
   border-radius: 6px;
   padding: 1rem;
+  margin: 2rem 0;
 }
 
 .release-header h1 {
   font-size: 2rem;
   font-weight: 600;
   line-height: 3rem;
+  color: #111;
 }
 
 .release-meta {
@@ -23,7 +25,7 @@
   align-items: flex-end;
 }
 
-.release-meta .meta-item {
+.release-author {
   margin-bottom: 0.5rem;
   margin-right: 1.5rem;
 }
@@ -42,25 +44,110 @@
   font-weight: bold;
 }
 
-.release-link {
-  display: inline-block;
-}
+.release-note-content {
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #d0d7de;
+  }
 
-.release-link .meta-link {
-  color: inherit;
-  cursor: pointer;
-}
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid #d0d7de;
+  }
 
-.link-detail {
-  display: inline-block;
-  vertical-align: top;
-}
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    height: 1.5rem;
+    line-height: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
-.link-detail svg {
-  fill: rgb(89, 99, 110);
-  vertical-align: text-bottom;
-}
+  h4 {
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
-.link-detail .link-text {
-  margin-left: 4px;
+  h5 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h6 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgb(89, 99, 110);
+    line-height: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  blockquote {
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: normal;
+    border-left-color: rgb(209, 217, 224);
+    border-left-style: solid;
+    border-left-width: 4px;
+    box-sizing: border-box;
+    color: rgb(89, 99, 110);
+    display: block;
+    margin-bottom: 1rem;
+    overflow-wrap: break-word;
+    padding: 1 1rem;
+  }
+
+  p > code {
+    padding: 0.2rem 0.4rem;
+    margin: 0;
+    font-size: 0.85rem;
+    white-space: break-spaces;
+    background-color: rgb(240, 240, 240) !important;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 6px;
+  }
+
+  pre {
+    padding: 1rem;
+    overflow: auto;
+    font-size: 0.85rem;
+    line-height: 1.45rem;
+    background-color: rgb(240, 240, 240) !important;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 6px;
+    word-wrap: normal;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+
+    > code {
+      display: inline;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      line-height: inherit;
+      word-wrap: normal;
+      word-break: normal;
+      white-space: pre;
+      border: 0;
+      background-color: transparent;
+    }
+  }
 }

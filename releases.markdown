@@ -3,10 +3,6 @@ title: Release Notes
 permalink: releases/
 ---
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+{% for post in site.categories["release"] %}
+  {% include release-note.html post=post content=post.content %}
+{% endfor %}
