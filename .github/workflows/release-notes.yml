@@ -16,19 +16,25 @@ jobs:
     outputs:
       artifact_id: ${{ steps.filename.outputs.filename }}
     steps:
+      - name: Format Published At Date
+        run: |
+          published_at=$(echo ${{ github.event.release.published_at }}| cut -d "T" -f 1)
+          echo "PUB_DATE=$published_at" >> "$GITHUB_ENV"
       - name: Create Filename
         id: filename
         run: |
-          pub_date=$(echo ${{ github.event.release.published_at }}| cut -d "T" -f 1)
+          # Normalize the tag name to replace the `.` with `-`
           tag_name=$(echo "${{ github.event.release.tag_name }}" | sed "s/\./-/g")
-          name="$pub_date-$tag_name"
+          name="$PUB_DATE-$tag_name"
           echo "post_name=$name" >> "$GITHUB_OUTPUT"
-          echo "filename=$name.md" >> "$GITHUB_OUTPUT"
+          echo "filename=$name.markdown" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
           echo """---
+          title: ${{ github.event.release.tag_name }}
           tag: ${{ github.event.release.tag_name }}
           category: release
+          date: $PUB_DATE
           created_at: ${{ github.event.release.created_at }}
           published_at: ${{ github.event.release.published_at }}
           author: ${{ github.event.release.author.login }}
@@ -52,7 +58,7 @@ jobs:
     uses: ./.github/workflows/push-to-gh-pages.yml
     with:
       FILE_1_ARTIFACT_ID: ${{ needs.generate-post.outputs.artifact_id }}
-      FILE_1_DEPLOY_TO: _posts/
+      FILE_1_DEPLOY_TO: _posts/releases/
       COMMIT_MSG: "adding release ${{ github.event.release.tag_name }} to the release notes"
       URL_PATH: releases/
     secrets: inherit # allow called workflow to use GitHub secrets
