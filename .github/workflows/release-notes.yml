@@ -27,7 +27,7 @@ jobs:
           tag_name=$(echo "${{ github.event.release.tag_name }}" | sed "s/\./-/g")
           name="$PUB_DATE-$tag_name"
           echo "post_name=$name" >> "$GITHUB_OUTPUT"
-          echo "filename=$name.markdown" >> "$GITHUB_OUTPUT"
+          echo "filename=$name.md" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
           echo """---
