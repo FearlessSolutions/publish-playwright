@@ -1,6 +1,6 @@
 {% if include.total %}
   <!-- if total was included, display the summary -->
-  <div class="test-coverage-report-container">
+  <div class="mt-4 flex flex-row gap-4">
     <!-- loop through the keys in total -->
     {% for stat in include.total %}
       <!-- assign the key to name -->
@@ -9,24 +9,24 @@
       {% if name != "branchesTrue" %}
         <!-- assign the value to values -->
         {% assign values = stat[1] %}
-        <div class="stat-container">
-          <div class="stat-header">
+        <div class="w-1/4 h-52 p-4 border rounded-sm border-gray flex flex-col justify-between items-center">
+          <div class="text-lg font-medium">
             <!-- Liquid provides a helper method to capitalize text -->
             {{ name | capitalize }}
           </div>
           <!-- use the custom coverage_status filter with the stat name to get the correct styling for the percent -->
-          <div class="stat-percent coverage-{{ values.pct | coverage_status: name }}">
+          <div class="font-bold text-3xl {{ values.pct | coverage_status: name }}">
             <!-- Liquid provides a helper method for rounding floats to a number -->
             {{ values.pct | round: 1 }}%
           </div>
-          <div class="stat-fraction">
+          <div class="text-sm font-normal">
             {{ values.covered }} / {{ values.total }}
           </div>
         </div>
       {% endif %}
     {% endfor %}
   </div>
-  <div class="coverage-link">
+  <div class="flex justify-end mt-4 min-h-4">
     <!-- Liquid provides a helper method that will create the link relative to the baseurl set in _config.yml -->
     <a href="{{ '/coverage' | relative_url }}" target="_blank">View Full Report</a>
   </div>

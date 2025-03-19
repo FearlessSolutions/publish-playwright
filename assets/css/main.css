@@ -1,0 +1,31 @@
+---
+---
+@import "tailwindcss";
+
+@layer utilities {
+	
+}
+
+@theme {
+  --color-green-500: rgb(2, 119, 2);
+  --color-red-500: rgb(155, 0, 0);
+  --color-yellow-500: rgb(243, 186, 17);
+  --color-gray: #d0d7de;
+  --color-gray-translucent: rgba(175, 184, 193, 0.2);
+}
+
+@layer components {
+  .pass {
+    color: var(--color-green-500);
+  }
+
+  .fail {
+    color: var(--color-red-500);
+  }
+
+  .warn {
+    color: var(--color-yellow-500);
+  }
+}
+
+@plugin "@tailwindcss/typography";

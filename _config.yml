@@ -31,7 +31,10 @@ github_url: "https://github.com/FearlessSolutions/publish-playwright"
 # Build settings
 theme: minima
 plugins:
-  - jekyll-feed
+  - jekyll-postcss-v2
+
+postcss:
+  cache: false
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -41,17 +44,19 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - "*.json"
+  - "*.js"
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 
 # If you want to link only specific pages in your header, use this and add the path to the pages
 # in order as they should show up.
@@ -63,25 +68,22 @@ header_pages:
 defaults:
   -
     scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-  -
-    scope:
       path: "index.markdown"
     values:
-      custom_css: [playwright,coverage,github,site] # added the playwright css in previous steps
+      layout: "page"
+      custom_css: [playwright,github,site] # added the playwright css in previous steps
   -
     scope:
       path: "coverage.markdown"
     values:
-      custom_css: [site,coverage]
+      layout: "page"
+      custom_css: [site]
   -
     scope:
       path: "playwright-*.markdown"
       type: "pages"
     values:
+      layout: "page"
       custom_css: [site,playwright]
   -
     scope:
@@ -90,9 +92,11 @@ defaults:
     values:
       layout: "playwright-branch"
       custom_css: [site,playwright]
-  - scope:
+  - 
+    scope:
       path: "releases.markdown"
     values:
+      layout: "page"
       custom_css: [site,github]
   -
     scope:

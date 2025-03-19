@@ -2,7 +2,7 @@
 	<!-- use the custom normalize_playwright filter to get the status, total number of tests, errors, and test statistics from the data -->
 	{% assign results = include.data | normalize_playwright %}
 	<!-- if the data was included, display the summary -->
-	<div class="test-report-container">
+	<div class="flex flex-col">
 		<div class="report-header">
 			<!-- if the run_id was included, display it in the header of the summary -->
 			{% if include.run_id %}
@@ -18,39 +18,29 @@
 		</div>
 		<div class="report-body">
 			<!-- style the icon according to the report status and use the custom status_icon filter to return the correct svg -->
-			<span class="status-icon status-{{results.status}}">{{ results.status | status_icon }}</span>
-			<div class="results">
+			<span class="w-14 h-14 {{results.status}}">{{ results.status | status_icon }}</span>
+			<div class="flex flex-col py-2 w-3/4">
 				{% if results.status == "warn" %}
 					<!-- if there are errors, there won't be any test statistics, so only display the errors -->
-					<div class="report-errors">
+					<div class="flex flex-col py-2 px-0 gap-4 font-mono">
 					{% for error in results.errors %}
 						<!-- loop through the errors and display the messages -->
-						<div class="report-error">{{ error.message }}</div>
+						<div class="border rounded-md py-2 px-4 border-gray">{{ error.message }}</div>
 					{% endfor %}
 					</div>
 				{% else %}
 					<!-- if there are no errors, display the test statistics -->
-					<div class="report-stats">
-						<div class="stat-item">
-							All <span class="stat-count">{{ results.total }}</span>
-						</div>
-						<div class="stat-item">
-							Passed <span class="stat-count">{{ results.expected }}</span>
-						</div>
-						<div class="stat-item">
-							Failed <span class="stat-count">{{ results.unexpected }}</span>
-						</div>
-						<div class="stat-item">
-							Flaky <span class="stat-count">{{ results.flaky }}</span>
-						</div>
-						<div class="stat-item">
-							Skipped <span class="stat-count">{{ results.skipped }}</span>
-						</div>
+					<div class="flex flex-row font-medium leading-8">
+						{% include playwright-stat.html label="All" value=results.total %}
+						{% include playwright-stat.html label="Passed" value=results.expected %}
+						{% include playwright-stat.html label="Failed" value=results.unexpected %}
+						{% include playwright-stat.html label="Flaky" value=results.flaky %}
+						{% include playwright-stat.html label="Skipped" value=results.skipped %}
 					</div>
 				{% endif %}
 
 				<!-- Liquid provides a helper method that will create the link relative to the baseurl set in _config.yml -->
-				<span class="report-link"><a href="{{ include.url | relative_url }}" target="_blank">View Full Report</a></span>
+				<span class="flex justify-end min-h-4"><a href="{{ include.url | relative_url }}" target="_blank">View Full Report</a></span>
 			</div>
 		</div>
 	</div>
