@@ -71,7 +71,7 @@ defaults:
     scope:
       path: "index.markdown"
     values:
-      custom_css: [site,playwright,coverage] # added the playwright css in previous steps
+      custom_css: [playwright,coverage,github,site] # added the playwright css in previous steps
   -
     scope:
       path: "coverage.markdown"
@@ -93,11 +93,11 @@ defaults:
   - scope:
       path: "releases.markdown"
     values:
-      custom_css: [site, github]
+      custom_css: [site,github]
   -
     scope:
       path: "_posts/releases/*"
       type: "posts"
     values:
       layout: "release-note"
-      custom_css: [site, github]
+      custom_css: [site,github]

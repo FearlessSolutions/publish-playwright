@@ -45,6 +45,20 @@
 }
 
 .release-note-content {
+  width: 100%;
+  overflow-x: auto;
+
+  p, li {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  table {
+    overflow: hidden;
+
+  }
+
   h1 {
     font-size: 2rem;
     font-weight: 600;

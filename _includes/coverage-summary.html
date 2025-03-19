@@ -17,7 +17,7 @@
           <!-- use the custom coverage_status filter with the stat name to get the correct styling for the percent -->
           <div class="stat-percent coverage-{{ values.pct | coverage_status: name }}">
             <!-- Liquid provides a helper method for rounding floats to a number -->
-            {{ values.pct | round: 1 }} %
+            {{ values.pct | round: 1 }}%
           </div>
           <div class="stat-fraction">
             {{ values.covered }} / {{ values.total }}

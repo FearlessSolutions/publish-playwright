@@ -20,7 +20,7 @@
 			<!-- style the icon according to the report status and use the custom status_icon filter to return the correct svg -->
 			<span class="status-icon status-{{results.status}}">{{ results.status | status_icon }}</span>
 			<div class="results">
-				{% if results.status == "error" %}
+				{% if results.status == "warn" %}
 					<!-- if there are errors, there won't be any test statistics, so only display the errors -->
 					<div class="report-errors">
 					{% for error in results.errors %}
