@@ -3,20 +3,20 @@
 	{% assign results = include.data | normalize_playwright %}
 	<!-- if the data was included, display the summary -->
 	<div class="flex flex-col">
-		<div class="report-header">
+		<div class="mt-4 py-2 px-4 font-light text-xs text-gray-500 border border-light-gray border-b-0 rounded-t-md bg-gray-100 flex justify-between">
 			<!-- if the run_id was included, display it in the header of the summary -->
 			{% if include.run_id %}
 				<!-- capture also creates strings with variables, create the url back to the run -->
 				{% capture run_link %}{{ site.github_url }}/actions/runs/{{ include.run_id }}{% endcapture %}
 				<!-- no relative_url necessary here because the link it outside of the app -->
-				<span class="report-run">Run Id: <a href="{{ run_link }}" target="_blank">{{ include.run_id }}</a></span>
+				<span>Run Id: <a href="{{ run_link }}" target="_blank">{{ include.run_id }}</a></span>
 			{% else %}
-				<span class="report-run"></span>
+				<span></span>
 			{% endif %}
 			<!-- Liquid provides a helper method for formatting dates -->
-			<span class="report-time">Run At: {{ results.startTime | date: "%Y-%m-%d %H:%M %Z" }}</span>
+			<span>Run At: {{ results.startTime | date: "%Y-%m-%d %H:%M %Z" }}</span>
 		</div>
-		<div class="report-body">
+		<div class="pt-4 pb-2 text-sm leading-normal border border-light-gray rounded-b-md flex items-center justify-around">
 			<!-- style the icon according to the report status and use the custom status_icon filter to return the correct svg -->
 			<span class="w-14 h-14 {{results.status}}">{{ results.status | status_icon }}</span>
 			<div class="flex flex-col py-2 w-3/4">
@@ -25,7 +25,7 @@
 					<div class="flex flex-col py-2 px-0 gap-4 font-mono">
 					{% for error in results.errors %}
 						<!-- loop through the errors and display the messages -->
-						<div class="border rounded-md py-2 px-4 border-gray">{{ error.message }}</div>
+						<div class="flex flex-wrap border rounded-md py-2 px-4 border-light-gray">{{ error.message }}</div>
 					{% endfor %}
 					</div>
 				{% else %}

@@ -95,6 +95,7 @@ defaults:
   - 
     scope:
       path: "releases.markdown"
+      type: "pages"
     values:
       layout: "page"
       custom_css: [site,github]
