@@ -2,8 +2,8 @@
 	<!-- use the custom normalize_playwright filter to get the status, total number of tests, errors, and test statistics from the data -->
 	{% assign results = include.data | normalize_playwright %}
 	<!-- if the data was included, display the summary -->
-	<div class="flex flex-col">
-		<div class="mt-4 py-2 px-4 font-light text-xs text-gray-500 border border-light-gray border-b-0 rounded-t-md bg-gray-100 flex justify-between">
+	<div class="@container flex flex-col mb-8">
+		<div class="mt-4 py-1 @sm:py-2 px-2 @sm:px-4 font-light text-[0.6rem] @sm:text-xs text-tertiary border border-outline border-b-0 rounded-t-md bg-highlight flex flex-row justify-between">
 			<!-- if the run_id was included, display it in the header of the summary -->
 			{% if include.run_id %}
 				<!-- capture also creates strings with variables, create the url back to the run -->
@@ -16,21 +16,21 @@
 			<!-- Liquid provides a helper method for formatting dates -->
 			<span>Run At: {{ results.startTime | date: "%Y-%m-%d %H:%M %Z" }}</span>
 		</div>
-		<div class="pt-4 pb-2 text-sm leading-normal border border-light-gray rounded-b-md flex items-center justify-around">
+		<div class="pt-2 @sm:pt-4 pb-1 @sm:pb-2 text-xs @sm:text-sm leading-normal border border-outline rounded-b-md flex items-center justify-around">
 			<!-- style the icon according to the report status and use the custom status_icon filter to return the correct svg -->
-			<span class="w-14 h-14 {{results.status}}">{{ results.status | status_icon }}</span>
-			<div class="flex flex-col py-2 w-3/4">
+			<span class="w-10 @sm:w-12 h-10 @sm:h-12 {{results.status}}">{{ results.status | status_icon }}</span>
+			<div class="py-1 @md:py-2 w-2/3 @sm:w-4/5">
 				{% if results.status == "warn" %}
 					<!-- if there are errors, there won't be any test statistics, so only display the errors -->
-					<div class="flex flex-col py-2 px-0 gap-4 font-mono">
+					<div class="py-1 @md:py-2 px-0 font-mono flex flex-col gap-4">
 					{% for error in results.errors %}
 						<!-- loop through the errors and display the messages -->
-						<div class="flex flex-wrap border rounded-md py-2 px-4 border-light-gray">{{ error.message }}</div>
+						<div class="py-1 @md:py-2 px-2 @md:px-4 border rounded-md border-outline flex flex-wrap">{{ error.message }}</div>
 					{% endfor %}
 					</div>
 				{% else %}
 					<!-- if there are no errors, display the test statistics -->
-					<div class="flex flex-row font-medium leading-8">
+					<div class="min-w-full font-medium leading-8 grid grid-cols-1 grid-rows-5 @lg:grid-cols-5 @lg:grid-rows-1 justify-center">
 						{% include playwright-stat.html label="All" value=results.total %}
 						{% include playwright-stat.html label="Passed" value=results.expected %}
 						{% include playwright-stat.html label="Failed" value=results.unexpected %}
@@ -40,7 +40,7 @@
 				{% endif %}
 
 				<!-- Liquid provides a helper method that will create the link relative to the baseurl set in _config.yml -->
-				<span class="flex justify-end min-h-4"><a href="{{ include.url | relative_url }}" target="_blank">View Full Report</a></span>
+				<span class="pt-1 @sm:pt-2 float-right min-h-4 text-xs @sm:text-sm"><a href="{{ include.url | relative_url }}" target="_blank">View Full Report</a></span>
 			</div>
 		</div>
 	</div>

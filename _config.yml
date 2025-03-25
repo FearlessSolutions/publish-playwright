@@ -24,17 +24,18 @@ description: >- # this means to ignore newlines until "baseurl:"
   Example repo to demonstrate how to create a reporting dashboard for tests
 baseurl: "/publish-playwright" # the subpath of your site, e.g. /blog
 url: "https://fearlesssolutions.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  thetif
+github_username: thetif
 
 github_url: "https://github.com/FearlessSolutions/publish-playwright"
 
 # Build settings
-theme: minima
 plugins:
-  - jekyll-postcss-v2
+  - jekyll-tailwind
 
-postcss:
-  cache: false
+tailwind:
+  input: "assets/css/main.css"
+  output: "_site/assets/css/main.css"
+  minify: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -52,7 +53,6 @@ exclude:
   - gemfiles/
   - Gemfile
   - Gemfile.lock
-  - node_modules/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
@@ -60,49 +60,19 @@ exclude:
 
 # If you want to link only specific pages in your header, use this and add the path to the pages
 # in order as they should show up.
-header_pages:
+nav_pages:
   - coverage.markdown
   - playwright-reports.markdown
   - releases.markdown
 
 defaults:
-  -
-    scope:
-      path: "index.markdown"
-    values:
-      layout: "page"
-      custom_css: [playwright,github,site] # added the playwright css in previous steps
-  -
-    scope:
-      path: "coverage.markdown"
-    values:
-      layout: "page"
-      custom_css: [site]
-  -
-    scope:
-      path: "playwright-*.markdown"
-      type: "pages"
-    values:
-      layout: "page"
-      custom_css: [site,playwright]
-  -
-    scope:
+  - scope:
       path: "playwright-reports/branches/*"
       type: "pages"
     values:
       layout: "playwright-branch"
-      custom_css: [site,playwright]
-  - 
-    scope:
-      path: "releases.markdown"
-      type: "pages"
-    values:
-      layout: "page"
-      custom_css: [site,github]
-  -
-    scope:
+  - scope:
       path: "_posts/releases/*"
       type: "posts"
     values:
       layout: "release-note"
-      custom_css: [site,github]

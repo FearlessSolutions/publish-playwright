@@ -1,10 +1,11 @@
 ---
+layout: default
 ---
 
-<div class="dashboard">
-  <div class="reports">
-    <div class="main-reports">
-      <h2>Main</h2>
+<div class="md:grid md:grid-cols-3 md:gap-8 md:items-start md:justify-center">
+  <div class="md:col-start-1 md:col-span-2">
+    <div class="">
+      <h2 class="md:mt-0">Main</h2>
 
       <h3>Code Coverage</h3>
       <!--
@@ -32,14 +33,14 @@
       {% include playwright-summary.html branch="main" data=data url="/playwright-reports/main.html" %}
     </div>
 
-    <div class="branch-reports">
+    <div class="">
       <h2>Latest Reports from Branches</h2>
       <!-- Include the html snippet from `_includes/playwright-branch-list.html` -->
       {% include playwright-branch-list.html %}
     </div>
   </div>
 
-  <div class="releases">
+  <div class="md:mt-[-2rem] md:col-start-3">
     {% for post in site.categories["release"] limit: 3 %}
       {% include release-note.html post=post content=post.content %}
     {% endfor %}
