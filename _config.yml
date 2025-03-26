@@ -29,13 +29,8 @@ github_username: thetif
 github_url: "https://github.com/FearlessSolutions/publish-playwright"
 
 # Build settings
-plugins:
-  - jekyll-tailwind
-
-tailwind:
-  input: "assets/css/main.css"
-  output: "_site/assets/css/main.css"
-  minify: true
+# theme:
+# plugins:
 
 # Exclude from processing.
 # The following items will not be processed, by default.

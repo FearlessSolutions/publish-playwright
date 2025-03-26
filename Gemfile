@@ -14,12 +14,8 @@ gem "jekyll", "~> 4.4.1"
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
 # gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
-
-gem "tailwindcss-ruby", ">=4"
-
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
-  gem "jekyll-tailwind"
+  gem "jekyll-tailwindcss", "~> 0.6.2"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

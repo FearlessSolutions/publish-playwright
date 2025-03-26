@@ -1,3 +1,7 @@
+---
+# This yaml frontmatter is required for jekyll to process the file
+---
+
 @import "tailwindcss";
 
 @layer utilities {
