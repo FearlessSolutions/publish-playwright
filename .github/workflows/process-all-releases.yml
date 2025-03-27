@@ -32,7 +32,7 @@ jobs:
     needs: get-all-tags
     strategy:
       matrix:
-        tag: ${{ fromJson(needs.get-all-tags.outputs.tags) }}
+        tag: ${{ needs.get-all-tags.outputs.tags }}
     uses: ./.github/workflows/release-notes.yml
     with:
       TAG: ${{ matrix.tag }}
