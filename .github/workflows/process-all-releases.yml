@@ -1,0 +1,34 @@
+name: Publish All Release Notes
+
+on:
+  workflow_dispatch:
+
+# this action needs the same permissions as the Push to GitHub Pages action because it is calling it
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  get-all-tags:
+    name: Get All Tags
+    runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.get-tags.outputs }}
+    steps:
+      - name: Get Tags
+        uses: octokit/request-action@v2.x
+        id: get-tags
+        with:
+          route: /repos/${{ github.repository_owner }}/${{ github.repository }}/tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release-note:
+    needs: get-all-tags
+    strategy:
+      matrix:
+        tag: ${{ needs.get-all-tags.outputs.tags }}
+    uses: ./.github/workflows/release-notes.yml
+    with:
+      TAG: ${{ matrix.tag.name }}
+    secrets: inherit # allow called workflow to use GitHub secrets
