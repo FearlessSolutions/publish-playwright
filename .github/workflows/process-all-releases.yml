@@ -19,7 +19,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get-tags
         with:
-          route: /repos/${{ github.repository_owner }}/${{ github.repository }}/tags
+          route: /repos/${{ github.repository }}/tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
