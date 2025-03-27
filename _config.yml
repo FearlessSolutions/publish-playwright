@@ -29,8 +29,20 @@ github_username: thetif
 github_url: "https://github.com/FearlessSolutions/publish-playwright"
 
 # Build settings
-# theme:
+theme: jekyll-report-dashboard
 # plugins:
+
+coverage:
+  pass:
+    lines: 90
+    functions: 85
+    statements: 90
+    branches: 80
+  fail:
+    lines: 70
+    functions: 65
+    statements: 70
+    branches: 60
 
 # Exclude from processing.
 # The following items will not be processed, by default.
