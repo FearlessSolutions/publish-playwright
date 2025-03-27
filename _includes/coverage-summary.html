@@ -14,15 +14,15 @@
             <!-- Liquid provides a helper method to capitalize text -->
             {{ name | capitalize }}
           </div>
-          {% capture status %}
-            {% if values.pct >= site.coverage.pass.[name] %}
+          {%- capture status -%}
+            {%- if values.pct >= site.coverage.pass.[name] -%}
               text-pass
-            {% elsif values.pct > site.coverage.fail.[name] %}
+            {%- elsif values.pct > site.coverage.fail.[name] -%}
               text-warn
-            {% else %}
+            {%- else -%}
               text-fail
-            {% endif %}
-          {% endcapture %}
+            {%- endif -%}
+          {%- endcapture -%}
           <!-- use the custom coverage_status filter with the stat name to get the correct styling for the percent -->
           <div class="font-bold text-xl @sm:text-2xl @md:text-3xl @lg:text-4xl {{ status }}">
             <!-- Liquid provides a helper method for rounding floats to a number -->
