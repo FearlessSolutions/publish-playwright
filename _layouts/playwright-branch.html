@@ -3,7 +3,7 @@ layout: page
 ---
 
 <!-- get the run ids for the branch and sort them by newest to oldest -->
-{% assign unsorted_runs = "" | split: ',' %}
+{% assign unsorted_runs = "" | split: "," %}
 {% for run in site.data.playwright-reports.branches[page.branch] %}
   {% assign unsorted_runs = unsorted_runs | push: run[0] %}
 {% endfor %}
