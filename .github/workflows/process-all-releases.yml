@@ -25,14 +25,14 @@ jobs:
       - name: Get Tag Names
         id: tag-names
         run: |
-          TAGS=$(echo '${{ steps.get-tags.outputs.data }}' | jq -r '[.[].name] | join(" ")' )
+          TAGS=$(echo '${{ steps.get-tags.outputs.data }}' | jq -r '[.[].name]' )
           echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
 
   release-note:
     needs: get-all-tags
     strategy:
       matrix:
-        tag: ${{ needs.get-all-tags.outputs.tags }}
+        tag: ${{ fromJson(needs.get-all-tags.outputs.tags) }}
     uses: ./.github/workflows/release-notes.yml
     with:
       TAG: ${{ matrix.tag }}
