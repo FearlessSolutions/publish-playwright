@@ -33,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Format Published At Date
         run: |
-          published_at=$(echo ${{ steps.get_release.outputs.data.published_at }}| cut -d "T" -f 1)
+          published_at=$(echo ${{ fromJson(steps.get_release.outputs.data).published_at }}| cut -d "T" -f 1)
           echo "PUB_DATE=$published_at" >> "$GITHUB_ENV"
       - name: Create Filename
         id: filename
@@ -50,16 +50,16 @@ jobs:
           tag: ${{ inputs.TAG }}
           category: release
           date: $PUB_DATE
-          created_at: ${{ steps.get_release.outputs.data.created_at }}
-          published_at: ${{ steps.get_release.outputs.data.published_at }}
-          author: ${{ steps.get_release.outputs.data.author.login }}
-          author_avatar: ${{ steps.get_release.outputs.data.author.avatar_url }}
-          author_link: ${{ steps.get_release.outputs.data.author.html_url }}
-          html_url: ${{ steps.get_release.outputs.data.html_url }}
-          prerelease: ${{ steps.get_release.outputs.data.prerelease }}
+          created_at: ${{ fromJson(steps.get_release.outputs.data).created_at }}
+          published_at: ${{ fromJson(steps.get_release.outputs.data).published_at }}
+          author: ${{ fromJson(steps.get_release.outputs.data).author.login }}
+          author_avatar: ${{ fromJson(steps.get_release.outputs.data).author.avatar_url }}
+          author_link: ${{ fromJson(steps.get_release.outputs.data).author.html_url }}
+          html_url: ${{ fromJson(steps.get_release.outputs.data).html_url }}
+          prerelease: ${{ fromJson(steps.get_release.outputs.data).prerelease }}
           ---
 
-          ${{ steps.get_release.outputs.data.body }}
+          ${{ fromJson(steps.get_release.outputs.data).body }}
           """ > ${{ steps.filename.outputs.filename }}
       - name: Upload Release Notes
         uses: actions/upload-artifact@v4
