@@ -5,14 +5,15 @@ module Jekyll
       @base = base
       @dir = dir
       @name = 'index.html'
-			
+
       process(@name)
 
-      @data = site.layouts['playwright-branch'].data
-      @content = site.layouts['playwright-branch'].content
+      @data = {
+        'layout' => 'playwright-branch',
+        'title' => branch,
+        'branch' => branch
+      }
 
-      @data['branch'] = branch
-      @data['title'] = branch
     end
   end
 

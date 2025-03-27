@@ -13,8 +13,8 @@
 
     <!-- get all of the run_ids in the branch, then reverse the list and get the first one -->
     {% assign runs = "" | split: ',' %}
-    {% for run_id in site.data.playwright-reports.branches[branch_name] %}
-      {% assign runs = runs | push: run_id %}
+    {% for run in site.data.playwright-reports.branches[branch_name] %}
+      {% assign runs = runs | push: run[0] %}
     {% endfor %}
 
     {% assign latest_run_id = runs | reverse | first %}
