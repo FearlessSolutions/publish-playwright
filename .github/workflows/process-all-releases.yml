@@ -25,7 +25,8 @@ jobs:
       - name: Get Tag Names
         id: tag-names
         run: |
-          TAGS=$(echo ${{ steps.get-tags.outputs.data }} | jq -r '.[].name')
+          echo $RESPONSE
+          TAGS=$(jq -r '.[].name' <<< '${{ steps.get-tags.outputs.data }}')
           echo $TAGS
           echo "tags=$TAGS" >> $GITHUB_OUTPUT
 
