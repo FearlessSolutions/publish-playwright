@@ -13,7 +13,7 @@ jobs:
     name: Get All Tags
     runs-on: ubuntu-latest
     outputs:
-      tags: ${{ steps.get-tags.outputs.data }}
+      tags: ${{ steps.tag-names.outputs.tags }}
     steps:
       - name: Get Tags
         uses: octokit/request-action@v2.x
@@ -22,13 +22,21 @@ jobs:
           route: /repos/${{ github.repository }}/tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get Tag Names
+        id: tag-names
+        run: |
+          TAGS=$(cat <<'EOF' | jq -r '.[].name' | tr '\n' '|' | sed 's/|$//'
+            ${{ steps.get-tags.outputs.data }}
+          EOF
+          )
+          echo "tags=$TAGS" >> $GITHUB_OUTPUT
 
   release-note:
     needs: get-all-tags
     strategy:
       matrix:
-        tag: ${{ fromJson(needs.get-all-tags.outputs.tags) }}
+        tag: ${{ needs.get-all-tags.outputs.tags }}
     uses: ./.github/workflows/release-notes.yml
     with:
-      TAG: ${{ fromJson(matrix.tag).name }}
+      TAG: ${{ matrix.tag }}
     secrets: inherit # allow called workflow to use GitHub secrets
