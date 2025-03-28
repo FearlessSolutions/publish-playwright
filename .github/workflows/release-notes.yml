@@ -50,14 +50,15 @@ jobs:
             echo "No release available"
             exit 1
           else
-            echo "published_at=$release.published_at" >> "$GITHUB_OUTPUT"
-            echo "created_at=$release.created_at" >> "$GITHUB_OUTPUT"
-            echo "author=$release.author.login" >> "$GITHUB_OUTPUT"
-            echo "author_avatar=$release.author.avatar_url" >> "$GITHUB_OUTPUT"
-            echo "author_url=$release.author.html_url" >> "$GITHUB_OUTPUT"
-            echo "html_url=$release.html_url" >> "$GITHUB_OUTPUT"
-            echo "prerelease=$release.prerelease" >> "$GITHUB_OUTPUT"
-            echo "body=$release.body" >> "$GITHUB_OUTPUT"
+            echo $release.published_at
+            echo "published_at=$(echo $release.published_at )" >> "$GITHUB_OUTPUT"
+            echo "created_at=$( echo $release.created_at )" >> "$GITHUB_OUTPUT"
+            echo "author=$( echo $release.author.login )" >> "$GITHUB_OUTPUT"
+            echo "author_avatar=$( echo $release.author.avatar_url )" >> "$GITHUB_OUTPUT"
+            echo "author_url=$( echo $release.author.html_url )" >> "$GITHUB_OUTPUT"
+            echo "html_url=$( echo $release.html_url )" >> "$GITHUB_OUTPUT"
+            echo "prerelease=$( echo $release.prerelease )" >> "$GITHUB_OUTPUT"
+            echo "body=$( echo $release.body )" >> "$GITHUB_OUTPUT"
           fi
 
   generate-post:
