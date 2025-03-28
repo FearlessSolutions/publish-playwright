@@ -44,16 +44,25 @@ jobs:
       - name: Set Release Variables
         id: variables
         run: |
-          release=${{ github.event_name == 'release' && toJson(github.event.release) || steps.get_release.outputs.data }}
-          echo $RELEASE
-          echo "published_at=$( echo $release | jq '.published_at' )" >> "$GITHUB_OUTPUT"
-          echo "created_at=$( echo $release | jq '.created_at' )" >> "$GITHUB_OUTPUT"
-          echo "author=$( echo $release | jq '.author.login' )" >> "$GITHUB_OUTPUT"
-          echo "author_avatar=$( echo $release | jq '.author.avatar_url' )" >> "$GITHUB_OUTPUT"
-          echo "author_url=$( echo $release | jq '.author.author_url' )" >> "$GITHUB_OUTPUT"
-          echo "html_url=$( echo $release | jq '.html_url' )" >> "$GITHUB_OUTPUT"
-          echo "prerelease=$( echo $release | jq '.prerelease' )" >> "$GITHUB_OUTPUT"
-          echo "body=$( echo $release | jq '.body' )" >> "$GITHUB_OUTPUT"
+          if [[ ${{ steps.get_release.outcome == 'success' }}]]; then
+              echo "published_at=${{ fromJson(steps.get_release.outputs.data).published_at }}" >> "$GITHUB_OUTPUT"
+              echo "created_at=${{ fromJson(steps.get_release.outputs.data).created_at }}" >> "$GITHUB_OUTPUT"
+              echo "author=${{ fromJson(steps.get_release.outputs.data).author.login }}" >> "$GITHUB_OUTPUT"
+              echo "author_avatar=${{ fromJson(steps.get_release.outputs.data).author.author_avatar }}" >> "$GITHUB_OUTPUT"
+              echo "author_url=${{ fromJson(steps.get_release.outputs.data).author.author_url }}" >> "$GITHUB_OUTPUT"
+              echo "html_url=${{ fromJson(steps.get_release.outputs.data).html_url }}" >> "$GITHUB_OUTPUT"
+              echo "prerelease=${{ fromJson(steps.get_release.outputs.data).prerelease }}" >> "$GITHUB_OUTPUT"
+              echo "body=${{ fromJson(steps.get_release.outputs.data).body }}" >> "$GITHUB_OUTPUT"
+           else
+             echo "published_at=${{ github.event.release.published_at }}" >> "$GITHUB_OUTPUT"
+              echo "created_at=${{ github.event.release.created_at }}" >> "$GITHUB_OUTPUT"
+              echo "author=${{ github.event.release.author.login }}" >> "$GITHUB_OUTPUT"
+              echo "author_avatar=${{ github.event.release.author.avatar_url }}" >> "$GITHUB_OUTPUT"
+              echo "author_url=${{ github.event.release.author.author_url }}" >> "$GITHUB_OUTPUT"
+              echo "html_url=${{ github.event.release.html_url }}" >> "$GITHUB_OUTPUT"
+              echo "prerelease=${{ github.event.release.prerelease }}" >> "$GITHUB_OUTPUT"
+              echo "body=${{ github.event.release.body }}" >> "$GITHUB_OUTPUT"
+           fi
 
   generate-post:
     name: Generate Release Post
