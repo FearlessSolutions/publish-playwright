@@ -11,6 +11,8 @@ on:
       TAG:
         type: string
         required: true
+  release:
+    types: [created, edited, prereleased, released]
 
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
