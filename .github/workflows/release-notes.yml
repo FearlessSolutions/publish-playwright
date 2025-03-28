@@ -20,13 +20,19 @@ permissions:
   actions: read
 
 jobs:
-  generate-post:
-    name: Generate Release Post
+  get-release:
+    name: Retrieve Release
     runs-on: ubuntu-latest
     outputs:
-      artifact_id: ${{ steps.filename.outputs.filename }}
+      published_at: ${{ steps.variables.outputs.published_at }}
+      created_at: ${{ steps.variables.outputs.created_at}}
+      author: ${{ steps.variables.outputs.author }}
+      author_avatar: ${{ steps.variables.outputs.author_avatar }}
+      author_url: ${{ steps.variables.outputs.author_url }}
+      html_url: ${{ steps.variables.outputs.html_url }}
+      prerelease: ${{ steps.variables.outputs.prerelease }}
+      body: ${{ steps.variables.outputs.body }}
     steps:
-      - run: echo ${{ github.event_name }}
       - name: Get Release Info
         if: github.event_name != 'release'
         uses: octokit/request-action@v2.x
@@ -35,24 +41,45 @@ jobs:
           route: /repos/${{ github.repository }}/releases/tags/${{ inputs.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set Release Variable
+      - name: Set Release ENV
         id: variables
         run: |
-          if [[ ${{ steps.get_release.outcome == 'success' }}]]; then
-            echo "release=${{ fromJson(steps.get_release.output.data) }}" >> "$GITHUB_ENV"
+          release=${{ github.event_name == 'release' && github.event.release || fromJson(steps.get_release.outputs.data) }}
+          echo $release
+          if [[ -z "$var" ]]; then
+            echo "No release available"
+            exit 1
           else
-            echo "release=${{ github.event.release }}" >> "$GITHUB_ENV"
+            echo "published_at=$release.published_at" >> "$GITHUB_OUTPUT"
+            echo "created_at=$release.created_at" >> "$GITHUB_OUTPUT"
+            echo "author=$release.author.login" >> "$GITHUB_OUTPUT"
+            echo "author_avatar=$release.author.avatar_url" >> "$GITHUB_OUTPUT"
+            echo "author_url=$release.author.html_url" >> "$GITHUB_OUTPUT"
+            echo "html_url=$release.html_url" >> "$GITHUB_OUTPUT"
+            echo "prerelease=$release.prerelease" >> "$GITHUB_OUTPUT"
+            echo "body=$release.body" >> "$GITHUB_OUTPUT"
           fi
+
+  generate-post:
+    name: Generate Release Post
+    needs: [get-release]
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_id: ${{ steps.filename.outputs.filename }}
+    steps:
       - name: Format Published At Date
         run: |
-          published_at=$(echo $release.published_at | cut -d "T" -f 1)
+          published_at=$(echo '${{ needs.get-release.outputs.published_at }}' | jq '.published_at' | cut -d "T" -f 1)
+          echo $published_at
           echo "PUB_DATE=$published_at" >> "$GITHUB_ENV"
       - name: Create Filename
         id: filename
         run: |
           # Normalize the tag name to replace the `.` with `-`
           tag_name=$(echo "${{ inputs.TAG }}" | sed "s/\./-/g")
+          echo $tag_name
           name="$PUB_DATE-$tag_name"
+          echo $name
           echo "post_name=$name" >> "$GITHUB_OUTPUT"
           echo "filename=$name.md" >> "$GITHUB_OUTPUT"
       - name: Create Post
@@ -62,16 +89,16 @@ jobs:
           tag: ${{ inputs.TAG }}
           category: release
           date: $PUB_DATE
-          created_at: $release.created_at
-          published_at: $release.published_at
-          author: $release.author.login
-          author_avatar: $release.author.avatar_url
-          author_link: $release.author.html_url
-          html_url: $release.html_url
-          prerelease: $release.prerelease
+          created_at: ${{ needs.get-release.outputs.created_at }}
+          published_at: ${{ needs.get-release.outputs.published_at }}
+          author: ${{ needs.get-release.outputs.author }}
+          author_avatar: ${{ needs.get-release.outputs.author_avatar }}
+          author_url: ${{ needs.get-release.outputs.author_url }}
+          html_url: ${{ needs.get-release.outputs.html_url }}
+          prerelease: ${{ needs.get-release.outputs.prerelease }}
           ---
 
-          $release.body
+          ${{ needs.get-release.outputs.body }}
           """ > steps.filename.outputs.filename
       - name: Upload Release Notes
         uses: actions/upload-artifact@v4
