@@ -41,12 +41,12 @@ jobs:
           route: /repos/${{ github.repository }}/releases/tags/${{ inputs.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set Release ENV
+      - name: Set Release Variables
         id: variables
         run: |
           release=${{ github.event_name == 'release' && github.event.release || fromJson(steps.get_release.outputs.data) }}
           echo $release
-          if [[ -z "$var" ]]; then
+          if [[ -z "$release" ]]; then
             echo "No release available"
             exit 1
           else
