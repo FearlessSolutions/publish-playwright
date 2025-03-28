@@ -26,6 +26,7 @@ jobs:
     outputs:
       artifact_id: ${{ steps.filename.outputs.filename }}
     steps:
+      - run: echo ${{ github.event }}
       - name: Get Release Info
         if: github.event != 'release'
         uses: octokit/request-action@v2.x
