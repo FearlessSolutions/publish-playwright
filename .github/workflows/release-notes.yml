@@ -43,22 +43,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set Release Variables
         id: variables
+        env:
+          RELEASE: ${{ github.event_name == 'release' && toJson(github.event.release) || steps.get_release.outputs.data }}
         run: |
-          release=${{ github.event_name == 'release' && github.event.release || fromJson(steps.get_release.outputs.data) }}
-          echo $release
-          if [[ -z "$release" ]]; then
+          echo $RELEASE
+          if [[ -z "${{ env.RELEASE }}" ]]; then
             echo "No release available"
             exit 1
           else
-            echo $release.published_at
-            echo "published_at=$(echo $release.published_at )" >> "$GITHUB_OUTPUT"
-            echo "created_at=$( echo $release.created_at )" >> "$GITHUB_OUTPUT"
-            echo "author=$( echo $release.author.login )" >> "$GITHUB_OUTPUT"
-            echo "author_avatar=$( echo $release.author.avatar_url )" >> "$GITHUB_OUTPUT"
-            echo "author_url=$( echo $release.author.html_url )" >> "$GITHUB_OUTPUT"
-            echo "html_url=$( echo $release.html_url )" >> "$GITHUB_OUTPUT"
-            echo "prerelease=$( echo $release.prerelease )" >> "$GITHUB_OUTPUT"
-            echo "body=$( echo $release.body )" >> "$GITHUB_OUTPUT"
+            echo "published_at=${{ fromJson(env.RELEASE).published_at }}" >> "$GITHUB_OUTPUT"
+            echo "created_at=${{ fromJson(env.RELEASE).created_at }}" >> "$GITHUB_OUTPUT"
+            echo "author=${{ fromJson(env.RELEASE).author.login }}" >> "$GITHUB_OUTPUT"
+            echo "author_avatar=${{ fromJson(env.RELEASE).author.avatar_url }}" >> "$GITHUB_OUTPUT"
+            echo "author_url=${{ fromJson(env.RELEASE).author.author_url }}" >> "$GITHUB_OUTPUT"
+            echo "html_url=${{ fromJson(env.RELEASE).html_url }}" >> "$GITHUB_OUTPUT"
+            echo "prerelease=${{ fromJson(env.RELEASE).prerelease }}" >> "$GITHUB_OUTPUT"
+            echo "body=${{ fromJson(env.RELEASE).body }}" >> "$GITHUB_OUTPUT"
           fi
 
   generate-post:
