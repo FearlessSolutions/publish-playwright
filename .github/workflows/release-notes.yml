@@ -22,7 +22,7 @@ permissions:
 jobs:
   generate-post:
     name: Generate Release Post
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       artifact_id: ${{ steps.filename.outputs.filename }}
     steps:
