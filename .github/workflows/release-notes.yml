@@ -23,14 +23,17 @@ jobs:
   generate-post:
     name: Generate Release Post
     runs-on: ubuntu-22.04
+    env:
+      TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.TAG }}
     outputs:
+      tag: ${{ env.TAG }}
       artifact_id: ${{ steps.filename.outputs.filename }}
     steps:
       - name: Get Release Info
         uses: octokit/request-action@v2.x
         id: get_release
         with:
-          route: /repos/${{ github.repository }}/releases/tags/${{ github.event_name == 'release' && github.event.release.tag_name || inputs.TAG }}
+          route: /repos/${{ github.repository }}/releases/tags/${{ env.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Format Published At Date
@@ -41,15 +44,15 @@ jobs:
         id: filename
         run: |
           # Normalize the tag name to replace the `.` with `-`
-          tag_name=$(echo "${{ inputs.TAG }}" | sed "s/\./-/g")
+          tag_name=$(echo "${{ env.TAG }}" | sed "s/\./-/g")
           name="$PUB_DATE-$tag_name"
           echo "post_name=$name" >> "$GITHUB_OUTPUT"
           echo "filename=$name.md" >> "$GITHUB_OUTPUT"
       - name: Create Post
         run: |
           echo """---
-          title: ${{ inputs.TAG }}
-          tag: ${{ inputs.TAG }}
+          title: ${{ env.TAG }}
+          tag: ${{ env.TAG }}
           category: release
           date: $PUB_DATE
           created_at: ${{ fromJson(steps.get_release.outputs.data).created_at }}
@@ -76,6 +79,6 @@ jobs:
     with:
       FILE_1_ARTIFACT_ID: ${{ needs.generate-post.outputs.artifact_id }}
       FILE_1_DEPLOY_TO: _posts/releases/
-      COMMIT_MSG: "adding release ${{ inputs.TAG }} to the release notes"
+      COMMIT_MSG: "adding release ${{ needs.generate-post.outputs.tag }} to the release notes"
       URL_PATH: releases/
     secrets: inherit # allow called workflow to use GitHub secrets
