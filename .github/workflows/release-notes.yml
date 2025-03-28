@@ -43,23 +43,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set Release Variables
         id: variables
-        env:
-          RELEASE: ${{ github.event_name == 'release' && toJson(github.event.release) || steps.get_release.outputs.data }}
         run: |
+          release=${{ github.event_name == 'release' && toJson(github.event.release) || steps.get_release.outputs.data }}
           echo $RELEASE
-          if [[ -z "${{ env.RELEASE }}" ]]; then
-            echo "No release available"
-            exit 1
-          else
-            echo "published_at=${{ fromJson(env.RELEASE).published_at }}" >> "$GITHUB_OUTPUT"
-            echo "created_at=${{ fromJson(env.RELEASE).created_at }}" >> "$GITHUB_OUTPUT"
-            echo "author=${{ fromJson(env.RELEASE).author.login }}" >> "$GITHUB_OUTPUT"
-            echo "author_avatar=${{ fromJson(env.RELEASE).author.avatar_url }}" >> "$GITHUB_OUTPUT"
-            echo "author_url=${{ fromJson(env.RELEASE).author.author_url }}" >> "$GITHUB_OUTPUT"
-            echo "html_url=${{ fromJson(env.RELEASE).html_url }}" >> "$GITHUB_OUTPUT"
-            echo "prerelease=${{ fromJson(env.RELEASE).prerelease }}" >> "$GITHUB_OUTPUT"
-            echo "body=${{ fromJson(env.RELEASE).body }}" >> "$GITHUB_OUTPUT"
-          fi
+          echo "published_at=$( echo $release | jq '.published_at' )" >> "$GITHUB_OUTPUT"
+          echo "created_at=$( echo $release | jq '.created_at' )" >> "$GITHUB_OUTPUT"
+          echo "author=$( echo $release | jq '.author.login' )" >> "$GITHUB_OUTPUT"
+          echo "author_avatar=$( echo $release | jq '.author.avatar_url' )" >> "$GITHUB_OUTPUT"
+          echo "author_url=$( echo $release | jq '.author.author_url' )" >> "$GITHUB_OUTPUT"
+          echo "html_url=$( echo $release | jq '.html_url' )" >> "$GITHUB_OUTPUT"
+          echo "prerelease=$( echo $release | jq '.prerelease' )" >> "$GITHUB_OUTPUT"
+          echo "body=$( echo $release | jq '.body' )" >> "$GITHUB_OUTPUT"
 
   generate-post:
     name: Generate Release Post
