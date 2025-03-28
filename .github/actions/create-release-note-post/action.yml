@@ -4,6 +4,9 @@ inputs:
   tag:  # tag for release
     description: 'The tag of the release to create a post for'
     required: true
+  token:
+    description: 'GitHub Token'
+    required: true
 outputs:
   filename:
     description: "The name of the post file created"
@@ -17,7 +20,7 @@ runs:
       with:
         route: /repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.token }}
     - name: Format Published At Date
       shell: bash
       run: |

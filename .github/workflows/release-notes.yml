@@ -34,6 +34,7 @@ jobs:
         uses: ./.github/actions/create-release-note-post
         with:
           tag: ${{ env.TAG }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Release Note
         uses: actions/upload-artifact@v4
         with:
