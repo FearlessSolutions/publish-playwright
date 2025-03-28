@@ -36,6 +36,7 @@ jobs:
       matrix:
         tag: ${{ fromJson(needs.get-all-tags.outputs.tags) }}
     steps:
+      - uses: actions/checkout@v4
       - id: post
         uses: ./.github/actions/create-release-note-post
         with:

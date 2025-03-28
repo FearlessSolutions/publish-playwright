@@ -29,6 +29,7 @@ jobs:
       tag: ${{ env.TAG }}
       artifact_id: ${{ steps.post.outputs.filename }}
     steps:
+      - uses: actions/checkout@v4
       - id: post
         uses: ./.github/actions/create-release-note-post
         with:
