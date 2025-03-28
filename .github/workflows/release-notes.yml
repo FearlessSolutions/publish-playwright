@@ -11,6 +11,8 @@ on:
       TAG:
         type: string
         required: true
+  release:
+    types: [published]
 
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
@@ -25,15 +27,24 @@ jobs:
       artifact_id: ${{ steps.filename.outputs.filename }}
     steps:
       - name: Get Release Info
+        if: github.event != 'release'
         uses: octokit/request-action@v2.x
         id: get_release
         with:
           route: /repos/${{ github.repository }}/releases/tags/${{ inputs.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set Release Variable
+        id: variables
+        run: |
+          if [[ ${{ steps.get_release.outcome == 'success' }}]]; then
+            echo "release=${{ fromJson(steps.get_release.output.data) }}" >> "$GITHUB_ENV"
+          else
+            echo "release=${{ github.event.release }}" >> "$GITHUB_ENV"
+          fi
       - name: Format Published At Date
         run: |
-          published_at=$(echo ${{ fromJson(steps.get_release.outputs.data).published_at }}| cut -d "T" -f 1)
+          published_at=$(echo $release.published_at | cut -d "T" -f 1)
           echo "PUB_DATE=$published_at" >> "$GITHUB_ENV"
       - name: Create Filename
         id: filename
@@ -50,17 +61,17 @@ jobs:
           tag: ${{ inputs.TAG }}
           category: release
           date: $PUB_DATE
-          created_at: ${{ fromJson(steps.get_release.outputs.data).created_at }}
-          published_at: ${{ fromJson(steps.get_release.outputs.data).published_at }}
-          author: ${{ fromJson(steps.get_release.outputs.data).author.login }}
-          author_avatar: ${{ fromJson(steps.get_release.outputs.data).author.avatar_url }}
-          author_link: ${{ fromJson(steps.get_release.outputs.data).author.html_url }}
-          html_url: ${{ fromJson(steps.get_release.outputs.data).html_url }}
-          prerelease: ${{ fromJson(steps.get_release.outputs.data).prerelease }}
+          created_at: $release.created_at
+          published_at: $release.published_at
+          author: $release.author.login
+          author_avatar: $release.author.avatar_url
+          author_link: $release.author.html_url
+          html_url: $release.html_url
+          prerelease: $release.prerelease
           ---
 
-          ${{ fromJson(steps.get_release.outputs.data).body }}
-          """ > ${{ steps.filename.outputs.filename }}
+          $release.body
+          """ > steps.filename.outputs.filename
       - name: Upload Release Notes
         uses: actions/upload-artifact@v4
         with:

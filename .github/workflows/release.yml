@@ -1,8 +1,8 @@
 name: Release
 
 on:
-  release:
-    types: [published]
+  # release:
+  #   types: [published]
 
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
