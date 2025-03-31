@@ -56,4 +56,4 @@ runs:
     - name: Add Post Body
       shell: bash
       run: |
-        printf '%s' "${{ steps.get-release.outputs.data }}" | jq -sR '.body' >> ${{ steps.filename.outputs.filename }}
+        printf '%s' "${{ fromJson(steps.get-release.outputs.data).body }}" | jq -sR '.' >> ${{ steps.filename.outputs.filename }}
