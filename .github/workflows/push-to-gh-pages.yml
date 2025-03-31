@@ -67,7 +67,7 @@ jobs:
           git add -A
           if [[ -z $(git status --porcelain) ]]; then
             # if there were not changes, do nothing
-            echo "Release was already added" >> "$GITHUB_STEP_SUMMARY"
+            echo "Nothing to commit" >> "$GITHUB_STEP_SUMMARY"
           else
             git commit -am "${{ inputs.COMMIT_MSG }}"
             git pull origin gh-pages --rebase -s recursive -X ours
