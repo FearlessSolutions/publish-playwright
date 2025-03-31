@@ -34,7 +34,7 @@ jobs:
       - name: Get Tag Names
         id: tag-names
         run: |
-          TAGS=$(echo '${{ steps.get-tags.outputs.data }}' | jq -c '[.[].name]' )
+          TAGS=$(echo '${{ steps.get-tags.outputs.data }}' | jq -c '[.[].tag_name]' )
           echo $TAGS
           echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
           if [[ $TAGS == "[]" ]]; then
