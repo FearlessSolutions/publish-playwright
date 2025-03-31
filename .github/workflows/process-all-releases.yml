@@ -28,7 +28,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get-tags
         with:
-          route: /repos/${{ github.repository }}/tags?per_page=${{ inputs.PER_PAGE <= 100 && inputs.PER_PAGE || 30 }}&page=${{ inputs.PAGE }}
+          route: /repos/${{ github.repository }}/releases?per_page=${{ inputs.PER_PAGE <= 100 && inputs.PER_PAGE || 30 }}&page=${{ inputs.PAGE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Tag Names
