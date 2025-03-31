@@ -35,7 +35,7 @@ runs:
         name="$PUB_DATE-$tag_name"
         echo "post_name=$name" >> "$GITHUB_OUTPUT"
         echo "filename=$name.md" >> "$GITHUB_OUTPUT"
-    - name: Create Post Frontmatter
+    - name: Create Post File
       shell: bash
       run: |
         echo """---
@@ -52,8 +52,5 @@ runs:
         prerelease: ${{ fromJson(steps.get-release.outputs.data).prerelease }}
         ---
 
+        ${{ toJson(fromJson(steps.get-release.outputs.data).body) }}
         """ > ${{ steps.filename.outputs.filename }}
-    - name: Add Post Body
-      shell: bash
-      run: |
-        printf '%s' "${{ fromJson(steps.get-release.outputs.data).body }}" | jq -sR '.' >> ${{ steps.filename.outputs.filename }}
