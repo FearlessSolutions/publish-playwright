@@ -53,4 +53,6 @@ runs:
         ---
 
         """ > ${{ steps.filename.outputs.filename }}
-        echo "${{ fromJson(steps.get-release.outputs.data).body }}" >> ${{ steps.filename.outputs.filename }}
+        echo -ne """
+        ${{ fromJson(steps.get-release.outputs.data).body }}
+        """ >> ${{ steps.filename.outputs.filename }}
