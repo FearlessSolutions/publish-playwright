@@ -39,7 +39,7 @@ runs:
       shell: bash
       run: |
         echo """---
-        title: ${{ inputs.tag }}
+        title: ${{ fromJson(steps.get-release.outputs.data).name }}
         tag: ${{ inputs.tag }}
         category: release
         date: $PUB_DATE
