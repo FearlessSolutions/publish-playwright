@@ -52,5 +52,5 @@ runs:
         prerelease: ${{ fromJson(steps.get-release.outputs.data).prerelease }}
         ---
 
-        ${{ fromJson(steps.get-release.outputs.data).body }}
         """ > ${{ steps.filename.outputs.filename }}
+        echo ${{ fromJson(steps.get-release.outputs.data).body }} >> ${{ steps.filename.outputs.filename }}
