@@ -37,6 +37,9 @@ jobs:
           TAGS=$(echo '${{ steps.get-tags.outputs.data }}' | jq -c '[.[].name]' )
           echo $TAGS
           echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
+          if [[ $TAGS == "[]" ]]; then
+            echo "Nothing to process" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
   create-posts:
     needs: get-all-tags
