@@ -1,4 +1,4 @@
-name: Publish All Release Notes
+name: Publish Multiple Release Notes
 
 on:
   workflow_dispatch:
