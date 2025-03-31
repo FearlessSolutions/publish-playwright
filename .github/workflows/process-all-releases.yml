@@ -40,6 +40,7 @@ jobs:
 
   create-posts:
     needs: get-all-tags
+    if: needs.get-all-tags.outputs.tags != '[]'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -60,6 +61,7 @@ jobs:
 
   push-to-pages:
     needs: [get-all-tags, create-posts]
+    if: needs.get-all-tags.outputs.tags != '[]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/create-github-app-token@v1
