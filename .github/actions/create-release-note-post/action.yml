@@ -56,4 +56,5 @@ runs:
     - name: Add Release Notes to Post
       shell: bash
       run: |
-        jq --argjson response ${{ fromJson(steps.get-release.outputs.data).body }} -r '.body' >>> ${{ steps.filename.outputs.filename }}
+        response=${{ steps.get-release.outputs.data }}
+        jq --argjson response $response -r '.body' >>> ${{ steps.filename.outputs.filename }}
