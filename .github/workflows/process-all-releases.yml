@@ -2,6 +2,15 @@ name: Publish All Release Notes
 
 on:
   workflow_dispatch:
+    inputs:
+      PER_PAGE:
+        type: number
+        required: false
+        default: 30
+      PAGE:
+        type: number
+        required: false
+        default: 1
 
 # this action needs the same permissions as the Push to GitHub Pages action because it is calling it
 permissions:
@@ -19,7 +28,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get-tags
         with:
-          route: /repos/${{ github.repository }}/tags
+          route: /repos/${{ github.repository }}/tags?per_page=${{ inputs.PER_PAGE }}&page=${{ inputs.PAGE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Tag Names
