@@ -47,7 +47,7 @@ runs:
         published_at: ${{ fromJson(steps.get-release.outputs.data).published_at }}
         author: ${{ fromJson(steps.get-release.outputs.data).author.login }}
         author_avatar: ${{ fromJson(steps.get-release.outputs.data).author.avatar_url }}
-        author_link: ${{ fromJson(steps.get-release.outputs.data).author.html_url }}
+        author_url: ${{ fromJson(steps.get-release.outputs.data).author.html_url }}
         html_url: ${{ fromJson(steps.get-release.outputs.data).html_url }}
         prerelease: ${{ fromJson(steps.get-release.outputs.data).prerelease }}
         ---
