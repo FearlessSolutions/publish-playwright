@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="md:grid md:grid-cols-3 md:gap-8 md:items-start md:justify-center">
+<div class="md:grid md:grid-cols-3 md:gap-4 md:items-start md:justify-center">
   <div class="md:col-start-1 md:col-span-2">
     <div class="">
       <h2 class="md:mt-0">Main</h2>
