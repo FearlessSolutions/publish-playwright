@@ -34,9 +34,9 @@ theme: jekyll-report-dashboard
 
 coverage:
   lines: 90
-  functions: 85
+  functions: 90
   statements: 90
-  branches: 80
+  branches: 90
 
 # Exclude from processing.
 # The following items will not be processed, by default.
