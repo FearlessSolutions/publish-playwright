@@ -43,10 +43,8 @@ layout: home
   <div class="md:col-start-4 md:col-span-2 md:mt-16">
     <h3>Latest Releases</h3>
     <div class="">
-      {% assign releases = site.categories["release"] | sort: 'published_at' | reverse %}
-      {% for post in releases limit: 12 %}
-        {% include release-note.html post=post content=post.content %}
-      {% endfor %}
+      {% assign limit = 5 %}
+      {% include release-note-list.html limit=limit %}
     </div>
     <div class="flex justify-end mt-4 min-h-4">
       <a href="{{ "/releases" | relative_url }}">View Previous Releases</a>
