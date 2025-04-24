@@ -48,7 +48,6 @@ coverage:
 #
 exclude:
   - "*.json"
-  - "*.js"
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
