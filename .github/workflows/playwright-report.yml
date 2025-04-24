@@ -60,8 +60,6 @@ jobs:
         run: pnpm exec playwright install --with-deps
       - name: Run e2e Tests
         id: e2e-test
-        env:
-          PLAYWRIGHT_HTML_ATTACHMENTS_BASE_URL: "${{ steps.variables.outputs.report_path }}${{ steps.variables.outputs.report_name }}/data/"
         run: pnpm exec playwright test
 #### end set up and test run ####
       - name: Rename Reports
