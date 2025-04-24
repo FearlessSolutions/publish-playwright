@@ -61,7 +61,7 @@ jobs:
       - name: Run e2e Tests
         id: e2e-test
         env:
-          PLAYWRIGHT_HTML_ATTACHMENTS_BASE_URL: "./data/"
+          PLAYWRIGHT_HTML_ATTACHMENTS_BASE_URL: "https://fearlesssolutions.github.io/publish-playwright/${{ steps.variables.outputs.report_path }}${{ steps.variables.outputs.report_name }}/data/"
         run: pnpm exec playwright test
 #### end set up and test run ####
       - name: Rename Reports
