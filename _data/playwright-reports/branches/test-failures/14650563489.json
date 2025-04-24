@@ -1,0 +1,750 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/publish-playwright/publish-playwright/playwright.config.ts",
+    "rootDir": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-reports/html-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-reports/playwright-summary.json"
+        }
+      ],
+      [
+        "github",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/publish-playwright/publish-playwright/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/runner/work/publish-playwright/publish-playwright/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/runner/work/publish-playwright/publish-playwright/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.50.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "example.spec.ts",
+      "file": "example.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "has title",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 414,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:25.908Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-b06063a3e613764d08f8",
+          "file": "example.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "get started link",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 426,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:26.598Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-274e97907a6e3638a22f",
+          "file": "example.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "showing test failure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "failed",
+                  "duration": 307,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:27.030Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-chromium/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 1,
+                  "status": "failed",
+                  "duration": 501,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2025-04-24T20:01:27.835Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-chromium-retry1/video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-chromium-retry1/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 2,
+                  "status": "failed",
+                  "duration": 381,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 2,
+                  "startTime": "2025-04-24T20:01:29.379Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-chromium-retry2/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-49d3c9ac26e5c08b8d32",
+          "file": "example.spec.ts",
+          "line": 20,
+          "column": 1
+        },
+        {
+          "title": "has title",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "status": "passed",
+                  "duration": 1223,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:30.349Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-f53a5ad453cd33dc57d5",
+          "file": "example.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "get started link",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "status": "passed",
+                  "duration": 779,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:31.958Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-bfe080d6fe34297f494c",
+          "file": "example.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "showing test failure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "status": "failed",
+                  "duration": 703,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:32.745Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-firefox/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 4,
+                  "status": "failed",
+                  "duration": 1533,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2025-04-24T20:01:34.432Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-firefox-retry1/video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-firefox-retry1/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 5,
+                  "status": "failed",
+                  "duration": 1372,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 2,
+                  "startTime": "2025-04-24T20:01:37.389Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-firefox-retry2/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-a4ff8213fd8b80ab22dd",
+          "file": "example.spec.ts",
+          "line": 20,
+          "column": 1
+        },
+        {
+          "title": "has title",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "status": "passed",
+                  "duration": 1758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:40.062Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-4a26ebd06a6b810edcc2",
+          "file": "example.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "get started link",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "status": "passed",
+                  "duration": 1641,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:42.406Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-1eb159041d56409ed83c",
+          "file": "example.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "showing test failure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "status": "failed",
+                  "duration": 732,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-04-24T20:01:44.054Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-webkit/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 7,
+                  "status": "failed",
+                  "duration": 833,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2025-04-24T20:01:45.301Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-webkit-retry1/video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-webkit-retry1/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 8,
+                  "status": "failed",
+                  "duration": 706,
+                  "error": {
+                    "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n",
+                    "stack": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50",
+                    "location": {
+                      "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                      "column": 50,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"https://playwright.dev/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Playwright\"\u001b[39m))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                        "column": 50,
+                        "line": 23
+                      },
+                      "message": "Error: expect.not.toBeVisible: Error: strict mode violation: getByText('Playwright') resolved to 13 elements:\n    1) <b class=\"navbar__title text--truncate\">Playwright</b> aka getByRole('link', { name: 'Playwright logo Playwright' })\n    2) <span class=\"highlight_gXVj\">Playwright</span> aka getByRole('heading', { name: 'Playwright enables reliable' }).locator('span')\n    3) <p>…</p> aka getByText('Cross-browser. Playwright')\n    4) <p>…</p> aka getByText('Cross-language. Use the')\n    5) <p>…</p> aka getByText('Auto-wait. Playwright waits')\n    6) <p>…</p> aka getByText('Web-first assertions. Playwright assertions are created specifically for the')\n    7) <p>Browsers run web content belonging to different o…</p> aka getByText('Browsers run web content')\n    8) <p>…</p> aka getByText('Trusted events. Hover')\n    9) <p>…</p> aka getByText('Test frames, pierce Shadow DOM. Playwright selectors pierce shadow DOM and')\n    10) <p>…</p> aka getByText('Browser contexts. Playwright')\n    ...\n\nCall log:\n\u001b[2m  - expect.not.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Playwright')\u001b[22m\n\n\n  21 |   await page.goto(\"https://playwright.dev/\");\n  22 |\n> 23 |   await expect(page.getByText(\"Playwright\")).not.toBeVisible();\n     |                                                  ^\n  24 | });\n  25 |\n    at /home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts:23:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 2,
+                  "startTime": "2025-04-24T20:01:46.818Z",
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/runner/work/publish-playwright/publish-playwright/test-results/example-showing-test-failure-webkit-retry2/video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/publish-playwright/publish-playwright/tests/e2e/example.spec.ts",
+                    "column": 50,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-acc4dac77ee41497a404",
+          "file": "example.spec.ts",
+          "line": 20,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-04-24T20:01:25.409Z",
+    "duration": 22272.528,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}
