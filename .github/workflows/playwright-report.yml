@@ -20,6 +20,7 @@ jobs:
   # add any set up jobs needed to get e2e tests running in GitHub Actions
   e2e:
     runs-on: ubuntu-latest
+    continue-on-error: true
     env:
       JSON_ARTIFACT_ID: json-playwright-report
       HTML_ARTIFACT_ID: html-playwright-report
@@ -28,24 +29,11 @@ jobs:
       json_artifact_id: ${{ env.JSON_ARTIFACT_ID }}
       json_deploy_to: _data/${{ steps.variables.outputs.report_path }}
       html_artifact_id: ${{ env.HTML_ARTIFACT_ID }}
-      html_deploy_to: ${{ steps.variables.outputs.report_path }}
+      html_deploy_to: ${{ steps.variables.outputs.report_path }}${{ steps.variables.outputs.report_name }}/
       commit_msg: ${{ steps.variables.outputs.commit_msg }}
-      output_url: ${{ steps.variables.outputs.report_path }}${{ steps.variables.outputs.report_name }}.html
+      output_url: ${{ steps.variables.outputs.report_path }}${{ steps.variables.outputs.report_name }}/
       actualResult: ${{ steps.e2e-test.conclusion }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-#### this is our set up for installing and running the tests, update this with your set up and test run ####
-      - uses: pnpm/action-setup@v4
-      - name: Install dependencies
-        run: pnpm install
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
-      - name: Run e2e Tests
-        id: e2e-test
-        continue-on-error: true
-        run: pnpm exec playwright test
-#### end set up and test run ####
       - name: Set Report Path and Name
         id: variables
         # create variables for renaming the reports and for where they need to be deployed to
@@ -62,15 +50,29 @@ jobs:
             echo "report_name=${{ github.run_id }}" >> "$GITHUB_OUTPUT"
             echo "commit_msg=add Playwright report for branch ${{ github.ref_name }}, run-id ${{ github.run_id }}" >> "$GITHUB_OUTPUT"
           fi
+      - name: Checkout
+        uses: actions/checkout@v4
+#### this is our set up for installing and running the tests, update this with your set up and test run ####
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+      - name: Run e2e Tests
+        id: e2e-test
+        env:
+          PLAYWRIGHT_HTML_ATTACHMENTS_BASE_URL: "${{ steps.variables.outputs.report_path }}${{ steps.variables.outputs.report_name }}/data"
+        run: pnpm exec playwright test
+#### end set up and test run ####
       - name: Rename Reports
+        if: ${{ !cancelled() }}
         # working-directory should point to the location of your Playwright reports
         working-directory: playwright-reports/
         # rename the reports to the report_name from above
         # change the names and locations to match your Playwright configurations
         run: |
           mv playwright-summary.json ${{ steps.variables.outputs.report_name }}.json
-          cd html-report
-          mv index.html ${{ steps.variables.outputs.report_name }}.html
+          mv html-report ${{ steps.variables.outputs.report_name }}
       - name: Upload JSON Report
         uses: actions/upload-artifact@v4
         id: upload-json
@@ -87,7 +89,7 @@ jobs:
         with:
           name: ${{ env.HTML_ARTIFACT_ID }}
           # path should point to the location of your html Playwright report
-          path: playwright-reports/html-report/${{ steps.variables.outputs.report_name }}.html
+          path: playwright-reports/${{ steps.variables.outputs.report_name }}
           retention-days: 30
 
   publish:
